@@ -1,2 +1,12 @@
-server:
-  port: 8081
+spring:
+  thymeleaf:
+    cache: false
+
+github:
+  access-token-param:
+    client_id: b0e605039d179df070c4
+    client_secret: 398ac962505586d8b868110ee07bafa0951091fc
+    redirect_uri: http://localhost:8080/callback
+  api:
+    access_token_uri: https://github.com/login/oauth/access_token
+    get_user_api: https://api.github.com/user
