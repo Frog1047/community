@@ -7,3 +7,5 @@
 [Git OAuth 授权登录](https://developer.github.com/apps/building-oauth-apps/)
 
 [OkHttp 官方](https://square.github.io/okhttp/)
+
+[commit message 规范](https://www.jianshu.com/p/b9d5a0711528)

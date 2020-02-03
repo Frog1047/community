@@ -27,8 +27,9 @@
     </form>
 
     <ul class="navbar-nav mr-5">
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" th:if="${session.user} ne null">
         <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           th:text="${session.user.name}"
            aria-haspopup="true" aria-expanded="false">
           我
         </a>
@@ -41,7 +42,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           href="https://github.com/login/oauth/authorize?client_id=b0e605039d179df070c4&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
+           th:if="${session.user} eq null"
+           href="/login">登录</a>
       </li>
     </ul>
   </div>

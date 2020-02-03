@@ -7,6 +7,15 @@ public class GithubUser {
     private Long id;
     private String login;
     private String bio;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -38,6 +47,15 @@ public class GithubUser {
             "id=" + id +
             ", login='" + login + '\'' +
             ", bio='" + bio + '\'' +
+            ", name='" + name + '\'' +
             '}';
+    }
+
+    public boolean isEmpty() {
+        return id == null;
+    }
+
+    public String getNameWithoutNull() {
+        return name == null ? login : name;
     }
 }

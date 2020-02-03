@@ -10,7 +10,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import xyz.wanghehe.community.dto.AccessTokenDTO;
@@ -24,8 +23,7 @@ import xyz.wanghehe.community.utils.Jacksons;
 @ConfigurationProperties(prefix = "github.api")
 public class GithubProvider {
 
-
-    private String accessTokenUri;
+    private String accessTokenApi;
     private String getUserApi;
 
     private OkHttpClient client;
@@ -35,12 +33,12 @@ public class GithubProvider {
         this.client = client;
     }
 
-    public String getAccessTokenUri() {
-        return accessTokenUri;
+    public String getAccessTokenApi() {
+        return accessTokenApi;
     }
 
-    public void setAccessTokenUri(String accessTokenUri) {
-        this.accessTokenUri = accessTokenUri;
+    public void setAccessTokenApi(String accessTokenApi) {
+        this.accessTokenApi = accessTokenApi;
     }
 
     public String getGetUserApi() {
@@ -50,6 +48,9 @@ public class GithubProvider {
     public void setGetUserApi(String getUserApi) {
         this.getUserApi = getUserApi;
     }
+
+
+
 
     /**
      * 通过 Github 提供的 code 获取 access_token
@@ -64,7 +65,7 @@ public class GithubProvider {
             //发送post请求
             RequestBody body = RequestBody.create(accessTokenDtoJson, jsonMediaType);
             Request request = new Request.Builder()
-                .url(accessTokenUri)
+                .url(this.accessTokenApi)
                 .post(body)
                 .build();
             try (Response response = client.newCall(request).execute()) {
