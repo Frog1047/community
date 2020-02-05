@@ -7,11 +7,11 @@ github:
     access_token_api: https://github.com/login/oauth/access_token
     get_user_api: https://api.github.com/user
     authorize_api: https://github.com/login/oauth/authorize
-  scope: user
+    scope: user
 
 spring:
   datasource:
     url: jdbc:h2:E:/H2DB/community
     driver-class-name: org.h2.Driver
     username: sa
-    password: ""
+    password: "123"

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @author Frog
  */
 @Configuration
-@MapperScan(basePackages = {"xyz.wanghehe.community.mapper"})
 public class MybatisConfig {
 
 

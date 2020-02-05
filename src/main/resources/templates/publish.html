@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zn-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>发布 - 问答社区</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
+        href="webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/css/iconfont.css}" href="css/iconfont.css"/>
+  <link rel="stylesheet" th:href="@{/css/main.css}" href="css/main.css"/>
+
+  <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+  <script th:src="@{/webjars/popper.js/1.14.3/popper.min.js}" src="webjars/popper.js/1.14.3/popper.min.js"></script>
+  <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"
+          src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="~{header :: navbar}"></div>
+
+<div class="container p-5">
+  <div class="row">
+    <div class="col-lg-9 col-md-12">
+      <h2><span class="iconfont" style="font-size: x-large">&#xe694;</span>发起</h2>
+      <hr>
+      <form action="/publish" method="post">
+        <div class="form-group">
+          <label for="title">问题标题(简单扼要)：</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="问题标题"
+                 th:value="${question?.title}">
+        </div>
+        <div class="form-group">
+          <label for="description">问题补充(必填，请参考右边指南)：</label>
+          <textarea class="form-control" id="description" name="description" rows="10"
+                    th:text="${question?.description}"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tag">添加标签：</label>
+          <input type="text" class="form-control" id="tag" name="tag" placeholder="输入多个标签时使用,隔开"
+                 th:value="${question?.tag}">
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error} ne null">
+          <strong th:text="${error}"></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <button type="submit" class="btn btn-success">发布</button>
+      </form>
+    </div>
+    <div class="col-lg-3 col-md-12">
+      <h4>发起问题指南</h4>
+      - 问题标题：请用精简的语言描述您发布的问题，不超过25字；<br>
+      - 问题补充：详细补充您的问题内容，并确保问题描述清晰直观，并提供一些相关的资料；<br>
+      - 添加标签：添加一个或多个合适的标签，用逗号隔开，每个标签不超过10个字；<br>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

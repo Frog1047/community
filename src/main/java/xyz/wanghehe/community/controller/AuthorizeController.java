@@ -25,8 +25,6 @@ import xyz.wanghehe.community.provider.GithubProvider;
 @Controller
 public class AuthorizeController {
 
-    //todo: 重构到GithubProvider中
-
     private final GithubProvider githubProvider;
     private final UserMapper userMapper;
     private AccessTokenDTO accessTokenDTO;

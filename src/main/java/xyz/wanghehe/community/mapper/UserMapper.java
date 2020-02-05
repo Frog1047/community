@@ -14,7 +14,7 @@ public interface UserMapper {
 
     /**
      * 将用户数据插入数据库
-     * @param user
+     * @param user user
      */
     @Insert("INSERT INTO user(ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED) "
         + "VALUES(#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified})")
@@ -23,16 +23,14 @@ public interface UserMapper {
 
     /**
      * 根据用户的account_id属性查询用户
-     * @param accountId
-     * @return
+     * @param accountId id
+     * @return User
      */
     @Select("SELECT * FROM user WHERE account_id = #{accountId}")
     User selectByAccountId(String accountId);
 
     /**
      * 根据用户的token属性查询用户
-     * @param token
-     * @return
      */
     @Select("SELECT * FROM user WHERE token = #{token}")
     User selectByToken(String token);
