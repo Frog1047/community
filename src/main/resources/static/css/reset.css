@@ -1,0 +1,16 @@
+a:link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:visited {
+  color: #007bff;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+.bg-gainsboro {
+  background-color: #efefef;
+}

@@ -1,16 +1,17 @@
-package xyz.wanghehe.community.model;
+package xyz.wanghehe.community.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import xyz.wanghehe.community.model.User;
 
 /**
  * @author Frog
  */
-@Setter
 @Getter
+@Setter
 @ToString
-public class Question {
+public class QuestionDTO {
 
     private Integer id;
     private String title;
@@ -22,4 +23,6 @@ public class Question {
     private String tag;
     private Long gmtCreate;
     private Long gmtModified;
+    private User user;
+
 }

@@ -61,6 +61,7 @@ public class AuthorizeController {
 
 
         if (githubUser != null && !githubUser.isEmpty()) {
+
             //从数据库中尝试获取user
             User user = userMapper.selectByAccountId(String.valueOf(githubUser.getId()));
             if (user == null) {

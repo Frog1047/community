@@ -3,6 +3,9 @@ package xyz.wanghehe.community.provider;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import java.io.IOException;
 import java.util.Objects;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -19,38 +22,20 @@ import xyz.wanghehe.community.utils.Jacksons;
 /**
  * @author Frog
  */
+
+
 @Component
 @ConfigurationProperties(prefix = "github.api")
 public class GithubProvider {
 
-    private String accessTokenApi;
-    private String getUserApi;
+    @Setter private String accessTokenApi;
+    @Setter private String getUserApi;
 
-    private OkHttpClient client;
+    private final OkHttpClient client;
 
-    @Autowired
     public GithubProvider(OkHttpClient client) {
         this.client = client;
     }
-
-    public String getAccessTokenApi() {
-        return accessTokenApi;
-    }
-
-    public void setAccessTokenApi(String accessTokenApi) {
-        this.accessTokenApi = accessTokenApi;
-    }
-
-    public String getGetUserApi() {
-        return getUserApi;
-    }
-
-    public void setGetUserApi(String getUserApi) {
-        this.getUserApi = getUserApi;
-    }
-
-
-
 
     /**
      * 通过 Github 提供的 code 获取 access_token
@@ -80,6 +65,7 @@ public class GithubProvider {
 
     public GithubUser getUser(String accessToken) {
         Jacksons jacksons = Jacksons.me();
+        jacksons.getObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         GithubUser user = null;
         //构建url
         HttpUrl url = Objects.requireNonNull(HttpUrl.parse(getUserApi))

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import xyz.wanghehe.community.utils.CookieUtils;
+import xyz.wanghehe.community.utils.RandomStringUtils;
 
 /**
  * @author Frog
@@ -27,8 +28,10 @@ public class LoginController {
     @GetMapping("/login")
     public String login(HttpServletResponse response, Model model) {
 
+        String randomString = RandomStringUtils.getRandomString(15);
+
         String url = authorizeApi + "?client_id=" + clientId + "&redirect_uri=" + redirectUrl + "&scope=" + scope
-            + "&state=1";
+            + "&state=" + randomString;
         return "redirect:"+url;
     }
 
