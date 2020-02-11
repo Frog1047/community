@@ -16,24 +16,7 @@ import xyz.wanghehe.community.utils.RandomStringUtils;
 @Controller
 public class LoginController {
 
-    @Value("${github.api.authorize_api}")
-    private String authorizeApi;
-    @Value("${github.access-token-param.client_id}")
-    private String clientId;
-    @Value("${github.access-token-param.redirect_uri}")
-    private String redirectUrl;
-    @Value("${github.api.scope}")
-    private String scope;
 
-    @GetMapping("/login")
-    public String login(HttpServletResponse response, Model model) {
-
-        String randomString = RandomStringUtils.getRandomString(15);
-
-        String url = authorizeApi + "?client_id=" + clientId + "&redirect_uri=" + redirectUrl + "&scope=" + scope
-            + "&state=" + randomString;
-        return "redirect:"+url;
-    }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {

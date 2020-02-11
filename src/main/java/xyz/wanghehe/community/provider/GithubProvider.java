@@ -31,12 +31,6 @@ public class GithubProvider {
     @Setter private String accessTokenApi;
     @Setter private String getUserApi;
 
-    private final OkHttpClient client;
-
-    public GithubProvider(OkHttpClient client) {
-        this.client = client;
-    }
-
     /**
      * 通过 Github 提供的 code 获取 access_token
      */
@@ -44,6 +38,7 @@ public class GithubProvider {
         MediaType jsonMediaType = MediaType.get("application/json; charset=utf-8");
         Jacksons jacksons = Jacksons.me();
         jacksons.getObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        OkHttpClient client = new OkHttpClient();
         String accessToken = null;
         try {
             String accessTokenDtoJson = jacksons.readAsString(dto);
@@ -67,6 +62,7 @@ public class GithubProvider {
         Jacksons jacksons = Jacksons.me();
         jacksons.getObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         GithubUser user = null;
+        OkHttpClient client = new OkHttpClient();
         //构建url
         HttpUrl url = Objects.requireNonNull(HttpUrl.parse(getUserApi))
             .newBuilder()

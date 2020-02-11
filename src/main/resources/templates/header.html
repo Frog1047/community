@@ -36,25 +36,24 @@
 
     <ul class="navbar-nav mr-5">
       <li class="nav-item">
-        <a class="nav-link" href="/publish" th:if="${session.user} ne null">发布</a>
+        <a class="nav-link" href="/publish" th:if="${user} ne null">提问</a>
       </li>
-      <li class="nav-item dropdown" th:if="${session.user} ne null">
+      <li class="nav-item dropdown" th:if="${user} ne null">
         <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-           th:text="${session.user.name}"
+           th:text="${user.name}"
            aria-haspopup="true" aria-expanded="false">
           我
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">个人资料</a>
-          <a class="dropdown-item" href="#">信息中心</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" th:href="@{/logout}" href="/logout" style="color: red">退出登录</a>
+        <div class="dropdown-menu" style="min-width:75px" >
+          <a class="dropdown-item iconfont text-center" th:href="@{/profile}"> &#xe628; 个人中心</a>
+<!--          <div class="dropdown-divider"></div>-->
+          <a class="dropdown-item iconfont text-center" th:href="@{/logout}" href="/logout" style="color: red;"> &#xe658; 退出登录</a>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           th:if="${session.user} eq null"
-           href="/login">登录</a>
+           th:if="${user} eq null"
+           href="/githubAuth">登录</a>
       </li>
     </ul>
   </div>

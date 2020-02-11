@@ -31,8 +31,6 @@ public class QuestionService {
     public QuestionPageDTO list(Integer page, Integer limit) {
         List<Question> questions = questionMapper.list(new RowBounds(limit * (page - 1), limit));
 
-
-
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
             User user = userMapper.selectById(question.getCreator());
@@ -41,12 +39,10 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        QuestionPageDTO questionPageDTO = new QuestionPageDTO();
-        questionPageDTO.setQuestionDTOList(questionDTOList);
-        questionPageDTO.setCurrentPage(page);
-        int totalPage = (int) Math.ceil(questionMapper.getCount() / (double) limit);
-        questionPageDTO.setTotalPage(totalPage);
 
-        return questionPageDTO;
+        return new QuestionPageDTO(questionDTOList, page, limit, questionMapper.getCount());
+    }
+
+    public void listByCreator(User user) {
     }
 }

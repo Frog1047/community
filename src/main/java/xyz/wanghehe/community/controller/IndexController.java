@@ -26,36 +26,22 @@ import xyz.wanghehe.community.utils.CookieUtils;
 @Controller
 public class IndexController {
 
-    private final UserMapper userMapper;
     private QuestionService questionService;
 
     @Autowired
-    public IndexController(UserMapper userMapper, QuestionService questionService) {
-        this.userMapper = userMapper;
+    public IndexController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
-
-
-
-
     @GetMapping("/")
-    public String index(HttpServletRequest request, Model model,
+    public String index(Model model,
         @RequestParam(defaultValue = "1") Integer page,
         @RequestParam(defaultValue = "10") Integer limit) {
-        //获取登录状态
-        Cookie[] cookies = request.getCookies();
-        Cookie token = CookieUtils.getCookie(cookies, "token");
-        String sessionUserName = "user";
-        if (token != null && (request.getSession().getAttribute(sessionUserName) == null)) {
-            User user = userMapper.selectByToken(token.getValue());
-            if (user != null) {
-                request.getSession().setAttribute(sessionUserName, user);
-            }
-        }
-
         //返回问题列表
         QuestionPageDTO list = questionService.list(page, limit);
+        if (list.getCurrentPage() > list.getTotalPage() || list.getCurrentPage() < 1) {
+            return "redirect:/";
+        }
         model.addAttribute("page", list);
 
         return "index";

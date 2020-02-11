@@ -29,10 +29,10 @@ public interface QuestionMapper {
      * @param rowBounds 分页对象
      * @return return
      */
-    @Select("SELECT * FROM question ORDER BY gmt_modified desc limit #{offset}, #{limit}")
+    @Select("SELECT * FROM question ORDER BY gmt_modified desc")
     List<Question> list(RowBounds rowBounds);
 
 
-    @Select("SELECT count(*) FROM question")
+    @Select("SELECT count(id) FROM question")
     Integer getCount();
 }

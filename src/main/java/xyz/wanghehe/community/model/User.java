@@ -16,9 +16,7 @@ import xyz.wanghehe.community.dto.GithubUser;
 public class User {
 
     private Integer id;
-    private String accountId;
     private String name;
-    private String token;
     private String avatarUrl;
     private  String bio;
     private Long gmtCreate;
@@ -26,9 +24,7 @@ public class User {
 
     public static User createUserByGithub(GithubUser githubUser) {
         User user = new User();
-        user.accountId = String.valueOf(githubUser.getId());
         user.name = githubUser.getNameWithoutNull();
-        user.token = UUID.randomUUID().toString();
         user.gmtCreate = System.currentTimeMillis();
         user.gmtModified = user.gmtCreate;
         user.avatarUrl = githubUser.getAvatarUrl();

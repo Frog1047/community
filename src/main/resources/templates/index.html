@@ -43,7 +43,7 @@
       <ul class="list-unstyled">
         <li class="media py-3 question-item" th:each="question : ${page.questionDTOList}">
           <img class="bd-placeholder-img mr-2 align-self-center rounded-lg"
-               th:src="${question.user.avatarUrl != null ? question.user.avatarUrl : '/image/default-avatar.png'}"
+               th:src="${question.user?.avatarUrl != null ? question.user?.avatarUrl : '/image/default-avatar.png'}"
                src="https://elasticsearch.cn/static/common/avatar-max-img.png" width="40" height="40" alt="avatar">
             <div class="media-body">
             <h6 class="m-0">
@@ -63,10 +63,10 @@
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item" th:if="${page.currentPage >= 3}">
-            <a class="page-link iconfont" th:href="@{/(page=${1})}">&#xe74d;</a>
+            <a class="page-link iconfont page-icon" th:href="@{/(page=${1})}">&#xe74d;</a>
           </li>
           <li class="page-item" th:if="${page.currentPage >= 2}">
-            <a class="page-link iconfont" th:href="@{/(page=${page.currentPage - 1})}">&#xe744;</a>
+            <a class="page-link iconfont page-icon" th:href="@{/(page=${page.currentPage - 1})}">&#xe744;</a>
           </li>
 
           <li th:class="${count == 0 ? 'page-item active' : 'page-item'}"
@@ -79,10 +79,10 @@
 
 
           <li class="page-item" th:if="${page.currentPage <= page.totalPage - 1}">
-            <a class="page-link iconfont" th:href="@{/(page=${page.currentPage + 1})}">&#xe743;</a>
+            <a class="page-link iconfont page-icon" th:href="@{/(page=${page.currentPage + 1})}">&#xe743;</a>
           </li>
           <li class="page-item" th:if="${page.currentPage <= page.totalPage - 2}">
-            <a class="page-link iconfont" th:href="@{/(page=${page.totalPage})}">&#xe74c;</a>
+            <a class="page-link iconfont page-icon" th:href="@{/(page=${page.totalPage})}">&#xe74c;</a>
           </li>
         </ul>
       </nav>
